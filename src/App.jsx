@@ -1,28 +1,30 @@
+import './App.css';
 import { useState } from 'react';
-import 'boxicons'
-
-import './App.css'
 
 function App() {
- const [passwordtype, setPassword] = useState("password")
+ const [move, setmove] = useState()
 
 
- const hide =()=>{
-  setPassword(passwordtype === "password"? "text":"password")
+
+  const moveMouse = (e) => {
+    setTimeout(()=>{
+      console.log(e);
+   setmove({left: e.clientX , top:e.clientY})
+    },50)
+  };
 
 
- }
+
   return (
     <>
-       <div className='flex items-center justify-center mt-20'>
-          <input className='border border-gray-400 ' type={passwordtype} placeholder="Enter password" />
-          <box-icon onClick={(hide)} name="hide"></box-icon>
-          
+      <div className='w-full h-[100vh] ' onMouseMove={moveMouse}>
+         <div className='w-8 h-8 rounded-full bg-green-700 absolute' style={move}  ></div>
+         <div className='w-12 mt-8 h-12 rounded-full bg-blue-700 absolute' style={move}  ></div>
+         <div className='w-4 mb-8 mr-5 h-4 rounded-full bg-yellow-700 absolute' style={move}  ></div>
          
-       </div>
-        
+          </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
