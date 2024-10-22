@@ -1,30 +1,74 @@
 import './App.css';
-import { useState } from 'react';
+// import { useState ,useEffect} from 'react';
+import{BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Nav from './Nav';
+
+import Hpage from './Hpage';
+import About from './About';
+import  Contact from './Create'
+import Univer from './Univer';
 
 function App() {
- const [move, setmove] = useState()
 
+// const home = ()=>{
+// console.log("hello")
+// }
+// const about = ()=>{
+//   console.log("about")
+//   }
+let url="https://dummyjson.com/users";
 
-
-  const moveMouse = (e) => {
-    setTimeout(()=>{
-      console.log(e);
-   setmove({left: e.clientX , top:e.clientY})
-    },50)
-  };
 
 
 
   return (
-    <>
-      <div className='w-full h-[100vh] ' onMouseMove={moveMouse}>
-         <div className='w-8 h-8 rounded-full bg-green-700 absolute' style={move}  ></div>
-         <div className='w-12 mt-8 h-12 rounded-full bg-blue-700 absolute' style={move}  ></div>
-         <div className='w-4 mb-8 mr-5 h-4 rounded-full bg-yellow-700 absolute' style={move}  ></div>
+    <> 
+      
+      <Router>
+      <Nav/>
+      {/* home={home} about={about} */}
+        
+      
+     
+      <Switch>
+        <Route exact path='/Home' >
+
+         <Hpage  url={url} />
+       
          
-          </div>
+        </Route>
+        <Route  path='/About' >
+
+         <About url={url} />
+       
+         
+        </Route>
+
+
+
+        <Route  path='/Cont' >
+
+              <Contact url={url} />
+
+
+        </Route>
+        <Route  path='/Uni' >
+
+              <Univer url={url} />
+
+
+        </Route>
+      </Switch>
+        
+       
+      
+        
+      </Router>
+
+     
     </>
   );
 }
+
 
 export default App;
